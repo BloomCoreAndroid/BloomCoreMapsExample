@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class BloomCoreMainActivity extends AppCompatActivity {
     private static final LatLng LOCATION =
-            new LatLng(5.9675, -62.535556);
+            new LatLng(41.035935, -71.954515);
     private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class BloomCoreMainActivity extends AppCompatActivity {
         }
     }
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(LOCATION).title("Angel Falls"));
+        mMap.addMarker(new MarkerOptions().position(LOCATION).title("Montauk"));
         //zooming
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION, 50));
     }
