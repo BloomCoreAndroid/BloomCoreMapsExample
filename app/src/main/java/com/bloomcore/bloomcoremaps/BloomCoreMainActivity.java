@@ -47,17 +47,31 @@ public class BloomCoreMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void setUpMap() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap != null) {
+         // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            if (mMap == null) {
-                Toast.makeText(getApplicationContext(),
-                        "Sorry! unable to create map", Toast.LENGTH_SHORT)
-                        .show();
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                setUpMyMap();
             }
         }
+    }
+    private void setUpMyMap() {
+        mMap.setMyLocationEnabled(true);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION, 14));
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+        mMap.addPolyline(new PolylineOptions().geodesic(true)
+                .add(new LatLng(41.078950, -71.938356))  // Gosman's Restaurant
+                .add(new LatLng(41.033386, -71.941833))  // The Sloppy Tuna
+                .add(new LatLng(41.042117, -71.947366))  // Edgemere Street
+                .add(new LatLng(41.070917, -71.856598))  // Montauk Point Lighthouse
+        );
+
     }
     
 }
