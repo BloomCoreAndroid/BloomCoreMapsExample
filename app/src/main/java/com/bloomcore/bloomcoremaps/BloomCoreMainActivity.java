@@ -48,16 +48,30 @@ public class BloomCoreMainActivity extends AppCompatActivity {
     }
     private void setUpMap() {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap != null) {
+        if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            if (mMap == null) {
-                Toast.makeText(getApplicationContext(),
-                        "Sorry! unable to create map", Toast.LENGTH_SHORT)
-                        .show();
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                setUpMyMap();
             }
         }
     }
+    private void setUpMyMap() {
+        mMap.addMarker(new MarkerOptions()
+                .position(LOCATION)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                .title("Montauk"))
+                .setSnippet("The End");
+
+        mMap.setMyLocationEnabled(true);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION,16 ));
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+    }
+    
     
 }
