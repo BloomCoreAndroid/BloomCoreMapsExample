@@ -17,12 +17,12 @@ public class BloomCoreMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setUpMapIfNeeded();
+        setUpMap();
     }
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
+        setUpMap();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BloomCoreMainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void setUpMapIfNeeded() {
+    private void setUpMap() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap != null) {
             // Try to obtain the map from the SupportMapFragment.
