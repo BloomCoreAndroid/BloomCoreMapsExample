@@ -12,8 +12,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class BloomCoreMainActivity extends AppCompatActivity {
-    private static final LatLng LOCATION =
-            new LatLng(41.035935, -71.954515);
     private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +48,16 @@ public class BloomCoreMainActivity extends AppCompatActivity {
     }
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (mMap != null) {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
+            if (mMap == null) {
+                Toast.makeText(getApplicationContext(),
+                        "Sorry! unable to create map", Toast.LENGTH_SHORT)
+                        .show();
             }
         }
     }
-    private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(LOCATION).title("Montauk"));
-        //zooming
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION, 50));
-    }
+    
 }
